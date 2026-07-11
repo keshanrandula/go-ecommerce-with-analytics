@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"go-analytics-backend/internal/config"
-	"go-analytics-backend/internal/models"
+	"go-analytics-backend/core/config"
+	"go-analytics-backend/core/models"
 	"log"
 	"os"
 	"time"

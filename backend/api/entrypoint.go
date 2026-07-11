@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"go-analytics-backend/internal/config"
-	"go-analytics-backend/internal/repository"
-	"go-analytics-backend/internal/routes"
+	"go-analytics-backend/core/config"
+	"go-analytics-backend/core/repository"
+	"go-analytics-backend/core/routes"
 
 	"github.com/gin-gonic/gin"
 )

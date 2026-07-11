@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"go-analytics-backend/internal/handlers"
-	"go-analytics-backend/internal/middleware"
+	"go-analytics-backend/core/handlers"
+	"go-analytics-backend/core/middleware"
 
 	"github.com/gin-gonic/gin"
 )

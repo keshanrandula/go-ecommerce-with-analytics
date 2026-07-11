@@ -3,8 +3,8 @@ package repository
 import (
 	"context"
 	"errors"
-	"go-analytics-backend/internal/config"
-	"go-analytics-backend/internal/models"
+	"go-analytics-backend/core/config"
+	"go-analytics-backend/core/models"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"

@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"go-analytics-backend/internal/utils"
+	"go-analytics-backend/core/utils"
 	"net/http"
 	"strings"
 

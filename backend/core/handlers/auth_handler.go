@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"go-analytics-backend/internal/models"
-	"go-analytics-backend/internal/repository"
-	"go-analytics-backend/internal/utils"
+	"go-analytics-backend/core/models"
+	"go-analytics-backend/core/repository"
+	"go-analytics-backend/core/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
