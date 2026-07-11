@@ -79,27 +79,5 @@ A high-performance, futuristic E-commerce platform built with a **Go (Golang) & 
 
 ---
 
-## ☁️ Vercel Deployment Guide
-
-This project is pre-configured to deploy the frontend and backend separately on Vercel.
-
-### 1. Deploy Go Backend
-1. Import your repository into **Vercel**.
-2. Select **Root Directory** as `backend`.
-3. Add the following **Environment Variables** (from your backend `.env`):
-   * `MONGODB_URI`, `JWT_SECRET`, `DB_NAME`, `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`.
-4. Click **Deploy**. Vercel will automatically build the serverless Go function using `vercel.json` and `api/entrypoint.go`.
-5. Copy your deployed Backend URL (e.g., `https://your-backend.vercel.app`).
-
-### 2. Deploy React Frontend
-1. Import the same repository into **Vercel**.
-2. Select **Root Directory** as `frontend`.
-3. Add the following **Environment Variable**:
-   * Key: `VITE_API_BASE_URL`
-   * Value: `https://your-backend.vercel.app` (your Vercel backend URL).
-4. Click **Deploy**.
-
----
-
 ## 📄 License
 This project is open-source and available under the MIT License.
