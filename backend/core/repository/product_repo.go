@@ -48,6 +48,10 @@ func GetAllProducts() ([]models.Product, error) {
 
 // SeedProducts checks if products collection is empty and seeds default items
 func SeedProducts() error {
+	if config.DB == nil {
+		log.Println("⚠️ WARNING: Database not connected. Skipping SeedProducts.")
+		return nil
+	}
 	collection := config.DB.Collection("products")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()

@@ -52,6 +52,9 @@ func GetUserByUsername(username string) (models.User, error) {
 
 // SeedAdminUser seeds a default admin user if one doesn't exist
 func SeedAdminUser() error {
+	if config.DB == nil {
+		return errors.New("database not initialized")
+	}
 	collection := config.DB.Collection("users")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()

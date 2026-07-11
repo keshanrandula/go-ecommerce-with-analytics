@@ -56,6 +56,9 @@ func AddProductReview(productID string, review models.Review) error {
 
 // SeedDefaultCoupons inserts the default coupons if they do not exist
 func SeedDefaultCoupons() error {
+	if config.DB == nil {
+		return errors.New("database not initialized")
+	}
 	collection := config.DB.Collection("coupons")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()

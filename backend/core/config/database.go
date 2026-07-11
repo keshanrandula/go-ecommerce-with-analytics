@@ -17,7 +17,8 @@ func ConnectDB() {
 	// .env එකෙන් URI එක කියවීම
 	uri := os.Getenv("MONGODB_URI")
 	if uri == "" {
-		log.Fatal("MONGODB_URI එක .env ෆයිල් එකේ සඳහන් කර නැත!")
+		log.Println("⚠️ WARNING: MONGODB_URI එක .env ෆයිල් එකේ හෝ Environment Variables වල සටහන් වී නැත!")
+		return
 	}
 
 	// තත්පර 10ක Timeout එකක් ලබාදීම
@@ -27,13 +28,15 @@ func ConnectDB() {
 	// Connect වීම
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
 	if err != nil {
-		log.Fatal("MongoDB සමඟ සම්බන්ධ වීමට නොහැක:", err)
+		log.Println("⚠️ WARNING: MongoDB සමඟ සම්බන්ධ වීමට නොහැක:", err)
+		return
 	}
 
 	// Connection එක වැඩදැයි පරීක්ෂා කිරීම (Ping)
 	err = client.Ping(ctx, nil)
 	if err != nil {
-		log.Fatal("MongoDB Atlas එක ක්‍රියාත්මක නැත (Ping Failed):", err)
+		log.Println("⚠️ WARNING: MongoDB Atlas එක ක්‍රියාත්මක නැත (Ping Failed):", err)
+		return
 	}
 
 	fmt.Println("✅ MongoDB Atlas එක සාර්ථකව සම්බන්ධ වුණා!")
