@@ -1,5 +1,11 @@
 # Custom GitHub Linguist Overrides
 
+# Hide large frontend source files to make Go the primary language
+frontend/src/App.jsx linguist-detectable=false
+frontend/src/components/Shop.jsx linguist-detectable=false
+frontend/src/components/CartDrawer.jsx linguist-detectable=false
+frontend/src/components/admin/** linguist-detectable=false
+
 # Keep configuration, node dependencies, public assets, and build setup ignored
 frontend/public/** linguist-detectable=false
 frontend/package-lock.json linguist-detectable=false
@@ -11,4 +17,5 @@ frontend/vite.config.js linguist-detectable=false
 frontend/*.html linguist-detectable=false
 frontend/*.json linguist-detectable=false
 frontend/*.md linguist-detectable=false
+
 
