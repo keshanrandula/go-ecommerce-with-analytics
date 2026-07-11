@@ -1,0 +1,18 @@
+# Custom GitHub Linguist Overrides
+# This forces GitHub language stats to ignore the frontend files and display "Go" as the primary repository language.
+
+# Mark frontend directories and files as non-detectable for language statistics
+frontend/src/** linguist-detectable=false
+frontend/public/** linguist-detectable=false
+frontend/*.html linguist-detectable=false
+frontend/*.js linguist-detectable=false
+frontend/*.jsx linguist-detectable=false
+frontend/*.css linguist-detectable=false
+frontend/*.json linguist-detectable=false
+frontend/*.md linguist-detectable=false
+frontend/.gitattributes linguist-detectable=false
+frontend/.gitignore linguist-detectable=false
+frontend/.oxlintrc.json linguist-detectable=false
+frontend/postcss.config.js linguist-detectable=false
+frontend/tailwind.config.js linguist-detectable=false
+frontend/vite.config.js linguist-detectable=false

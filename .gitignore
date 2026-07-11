@@ -1,0 +1,24 @@
+# Dependency directories
+node_modules/
+dist/
+dist-ssr/
+
+# Environment variables (Crucial to hide passwords/keys)
+.env
+backend/.env
+frontend/.env
+.env.local
+.env.*.local
+
+# Go binaries and builds
+backend/api.exe
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+backend/uploads/
+
+# OS metadata
+.DS_Store
+Thumbs.db
