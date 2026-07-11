@@ -43,7 +43,11 @@ func RegisterHandler(c *gin.Context) {
 	}
 
 	if err := repository.RegisterUser(user); err != nil {
-		c.JSON(http.StatusConflict, gin.H{"error": "මෙම පරිශීලක නාමය දැනටමත් භාවිතා වේ (Username already exists)"})
+		if err.Error() == "username already exists" {
+			c.JSON(http.StatusConflict, gin.H{"error": "මෙම පරිශීලක නාමය දැනටමත් භාවිතා වේ (Username already exists)"})
+		} else {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Database error: " + err.Error()})
+		}
 		return
 	}
 
