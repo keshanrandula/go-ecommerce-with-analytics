@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -16,6 +17,7 @@ var DB *mongo.Database
 func ConnectDB() {
 	// .env එකෙන් URI එක කියවීම
 	uri := os.Getenv("MONGODB_URI")
+	uri = strings.TrimSpace(uri)
 	if uri == "" {
 		log.Println("⚠️ WARNING: MONGODB_URI එක .env ෆයිල් එකේ හෝ Environment Variables වල සටහන් වී නැත!")
 		return
@@ -43,6 +45,7 @@ func ConnectDB() {
 	
 	// Read database name dynamically from environment
 	dbName := os.Getenv("DB_NAME")
+	dbName = strings.TrimSpace(dbName)
 	if dbName == "" {
 		dbName = "analytics-db"
 	}
