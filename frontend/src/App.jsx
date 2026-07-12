@@ -7,6 +7,7 @@ import Orders from './components/Orders'
 function App() {
   // Navigation / View state
   const [view, setView] = useState('shop') // 'shop' or 'dashboard'
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   
   // User Authentication State
   const [currentUser, setCurrentUser] = useState(() => {
@@ -553,37 +554,64 @@ function App() {
       )}
 
       {/* Premium Glassmorphic Navigation Bar Header */}
+
       <header className={`sticky top-0 z-40 border-b backdrop-blur-lg shadow-sm transition-all duration-300 ${
         view === 'dashboard'
           ? 'border-slate-900/60 bg-slate-950/40 text-slate-100'
           : 'border-slate-200/60 bg-white/60 text-slate-800'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between md:items-center gap-4">
           
-          {/* Logo & Platform Info */}
-          <div className="flex items-center gap-3">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white text-lg tracking-wider shadow-lg transition-all duration-300 ${
-              view === 'shop' 
-                ? 'bg-gradient-to-tr from-emerald-600 to-teal-500 shadow-emerald-500/10' 
-                : 'bg-gradient-to-tr from-blue-600 to-indigo-650 shadow-blue-500/20'
-            }`}>
-              GA
-            </div>
-            <div>
-              <h1 className={`text-xl font-bold tracking-tight bg-gradient-to-r bg-clip-text text-transparent transition-all duration-300 ${
+          {/* Top Bar (Logo + Hamburger for Mobile) */}
+          <div className="flex items-center justify-between w-full md:w-auto">
+            {/* Logo & Platform Info */}
+            <div className="flex items-center gap-3">
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white text-lg tracking-wider shadow-lg transition-all duration-300 ${
                 view === 'shop' 
-                  ? 'from-slate-900 via-slate-850 to-slate-700' 
-                  : 'from-white via-slate-200 to-slate-400'
+                  ? 'bg-gradient-to-tr from-emerald-600 to-teal-500 shadow-emerald-500/10' 
+                  : 'bg-gradient-to-tr from-blue-600 to-indigo-650 shadow-blue-500/20'
               }`}>
-                Go-Analytics E-Store
-              </h1>
-              <p className={`text-xs font-medium transition-colors duration-300 ${
-                view === 'shop' ? 'text-slate-500' : 'text-slate-555'
-              }`}>Interactive Demo Store & Event Metrics System</p>
+                GA
+              </div>
+              <div>
+                <h1 className={`text-xl font-bold tracking-tight bg-gradient-to-r bg-clip-text text-transparent transition-all duration-300 ${
+                  view === 'shop' 
+                    ? 'from-slate-900 via-slate-850 to-slate-700' 
+                    : 'from-white via-slate-200 to-slate-400'
+                }`}>
+                  Go-Analytics E-Store
+                </h1>
+                <p className={`text-xs font-medium transition-colors duration-300 ${
+                  view === 'shop' ? 'text-slate-500' : 'text-slate-400'
+                }`}>Interactive Demo Store & Event Metrics System</p>
+              </div>
             </div>
+
+            {/* Mobile Hamburger Toggle Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 rounded-xl border transition-all duration-200 focus:outline-none"
+              style={{
+                borderColor: view === 'dashboard' ? '#1e293b' : '#cbd5e1',
+                backgroundColor: view === 'dashboard' ? '#0f172a' : '#f8fafc',
+                color: view === 'dashboard' ? '#94a3b8' : '#64748b'
+              }}
+              title="Toggle Menu"
+            >
+              {isMobileMenuOpen ? (
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
           </div>
 
-          <div className="flex items-center gap-4">
+          {/* Desktop Navigation (hidden on mobile) */}
+          <div className="hidden md:flex items-center gap-4">
             <div className={`flex items-center p-1.5 rounded-xl border backdrop-blur-md transition-colors duration-300 ${
               view === 'dashboard' || view === 'agency' ? 'bg-slate-900/60 border-slate-800' : 'bg-slate-100 border-slate-200'
             }`}>
@@ -600,7 +628,6 @@ function App() {
                   <span className="absolute bottom-0 left-1/4 right-1/4 h-[2px] bg-emerald-400 rounded shadow-[0_0_8px_#34d399]"></span>
                 )}
               </button>
-
 
               {currentUser && (
                 <button
@@ -686,10 +713,6 @@ function App() {
                 </button>
               )}
             </div>
-          </div>
-
-          {/* Quick Info & Controls */}
-          <div className="flex items-center gap-3 flex-wrap justify-end">
 
             {/* Health Badge */}
             <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-colors duration-300 ${
@@ -705,8 +728,127 @@ function App() {
               </span>
             </div>
           </div>
+
+          {/* Mobile Collapsible Navigation Menu Drawer */}
+          {isMobileMenuOpen && (
+            <div className={`md:hidden w-full mt-4 pt-4 border-t flex flex-col gap-4 animate-fade-in ${
+              view === 'dashboard' ? 'border-slate-900/60' : 'border-slate-200'
+            }`}>
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={() => { setView('shop'); setIsMobileMenuOpen(false); }}
+                  className={`w-full text-center py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all duration-200 ${
+                    view === 'shop' 
+                      ? 'bg-gradient-to-r from-emerald-600 to-teal-655 text-white shadow-md' 
+                      : view === 'dashboard' ? 'text-slate-400 hover:text-slate-100 hover:bg-slate-900' : 'text-slate-500 hover:text-slate-850 hover:bg-slate-100'
+                  }`}
+                >
+                  🛒 Premium Shop
+                </button>
+
+                {currentUser && (
+                  <button
+                    onClick={() => { setView('orders'); setIsMobileMenuOpen(false); }}
+                    className={`w-full text-center py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all duration-200 ${
+                      view === 'orders' 
+                        ? 'bg-gradient-to-r from-emerald-600 to-teal-655 text-white shadow-md' 
+                        : view === 'dashboard' ? 'text-slate-400 hover:text-slate-100 hover:bg-slate-900' : 'text-slate-500 hover:text-slate-850 hover:bg-slate-100'
+                    }`}
+                  >
+                    📦 My Orders
+                  </button>
+                )}
+
+                {currentUser && isAdmin && (
+                  <button
+                    onClick={() => { setView('dashboard'); setIsMobileMenuOpen(false); }}
+                    className={`w-full text-center py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all duration-200 ${
+                      view === 'dashboard' 
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-655 text-white shadow-lg' 
+                        : view === 'dashboard' ? 'text-slate-400 hover:text-slate-100 hover:bg-slate-900' : 'text-slate-500 hover:text-slate-850 hover:bg-slate-100'
+                    }`}
+                  >
+                    📊 Analytics Engine
+                  </button>
+                )}
+              </div>
+
+              {/* User profile / auth */}
+              <div className="pt-2 border-t border-slate-900/10 flex flex-col gap-2">
+                {currentUser ? (
+                  <div className="flex flex-col gap-2">
+                    <div className={`flex items-center justify-between px-3 py-2 rounded-xl border backdrop-blur-md transition-colors duration-300 ${
+                      view === 'shop' 
+                        ? 'bg-emerald-50/60 border-emerald-200/60 text-emerald-850' 
+                        : 'bg-blue-950/30 border-blue-900/40 text-blue-200'
+                    }`}>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs select-none">👤</span>
+                        <span className="text-xs font-bold font-sans tracking-tight">
+                          {currentUser.name}
+                        </span>
+                      </div>
+                      <span className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-md ${
+                        currentUser.role === 'admin' 
+                          ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' 
+                          : 'bg-emerald-500/20 text-emerald-600 border border-emerald-500/30'
+                      }`}>
+                        {currentUser.role}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => { handleUserLogout(); setIsMobileMenuOpen(false); }}
+                      className={`w-full py-2.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold tracking-wide transition-all duration-205 ${
+                        view === 'shop' 
+                          ? 'bg-slate-100 border-slate-200 text-slate-500 hover:text-rose-600 hover:bg-rose-50 hover:border-rose-100' 
+                          : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-rose-455 hover:bg-rose-950/20'
+                      }`}
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                      </svg>
+                      <span>Sign Out</span>
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setAuthTab('login')
+                      setShowLoginModal(true)
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className={`w-full py-2.5 rounded-xl text-center text-xs font-bold tracking-wide transition-all duration-200 ${
+                      view === 'shop'
+                        ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white'
+                        : 'bg-gradient-to-r from-blue-600 to-indigo-650 text-white'
+                    }`}
+                  >
+                    Login / Register
+                  </button>
+                )}
+              </div>
+
+              {/* Health Badge */}
+              <div className={`flex items-center justify-between px-3 py-2 rounded-lg border transition-colors duration-300 ${
+                view === 'shop' ? 'bg-slate-100 border-slate-200 text-slate-600' : 'bg-slate-900 border-slate-800 text-slate-400'
+              }`}>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Backend API</span>
+                <div className="flex items-center gap-2">
+                  <div className={`w-2 h-2 rounded-full ${
+                    backendStatus === 'connected' ? 'bg-emerald-500 shadow-[0_0_8px_#10b981]' :
+                    backendStatus === 'disconnected' ? 'bg-rose-500 shadow-[0_0_8px_#f43f5e]' :
+                    'bg-amber-500 animate-pulse'
+                  }`}></div>
+                  <span className="text-[11px] font-semibold">
+                    {backendStatus === 'checking' ? 'Linking...' : backendStatus === 'connected' ? 'Online' : 'Offline'}
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </header>
+
 
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full relative z-10">
@@ -774,10 +916,11 @@ function App() {
       {view === 'shop' && (
         <button
           onClick={() => setIsCartOpen(true)}
-          className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white p-4 rounded-full shadow-lg shadow-emerald-500/20 hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] transition duration-200 hover:scale-105 active:scale-95 flex items-center justify-center border border-emerald-500/10"
+          className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-40 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white p-3 md:p-4 rounded-full shadow-lg shadow-emerald-500/20 hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] transition duration-200 hover:scale-105 active:scale-95 flex items-center justify-center border border-emerald-500/10"
           title="Open Shopping Cart"
         >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
           {cart.length > 0 && (

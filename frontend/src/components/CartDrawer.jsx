@@ -149,8 +149,9 @@ export default function CartDrawer({
       ></div>
 
       {/* Slide-out Panel container */}
-      <div className="absolute inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-white shadow-2xl border-l border-slate-100 flex flex-col justify-between h-full relative animate-slide-in">
+      <div className="absolute inset-y-0 right-0 max-w-full flex pl-3 sm:pl-10">
+        <div className="w-screen max-w-[calc(100vw-0.75rem)] sm:max-w-md bg-white shadow-2xl border-l border-slate-100 flex flex-col justify-between h-full relative animate-slide-in">
+
           
           {/* Header */}
           <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">

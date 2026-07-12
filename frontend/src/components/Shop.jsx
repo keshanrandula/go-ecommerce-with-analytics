@@ -165,7 +165,7 @@ export default function Shop({
       />
       
       {/* Dynamic Cyberpunk Glassmorphic Hero Banner */}
-      <section className="relative rounded-3xl border border-emerald-500/10 bg-gradient-to-br from-slate-900 via-emerald-950/30 to-slate-950 p-8 sm:p-12 md:p-16 overflow-hidden mb-12 shadow-2xl relative group">
+      <section className="relative rounded-3xl border border-emerald-500/10 bg-gradient-to-br from-slate-900 via-emerald-950/30 to-slate-950 p-6 sm:p-12 md:p-16 overflow-hidden mb-12 shadow-2xl relative group">
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none group-hover:bg-emerald-500/15 transition-all duration-500"></div>
         <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-teal-500/10 rounded-full blur-[100px] pointer-events-none group-hover:bg-teal-500/15 transition-all duration-500"></div>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#022c22_1px,transparent_1px),linear-gradient(to_bottom,#022c22_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30"></div>
@@ -174,7 +174,7 @@ export default function Shop({
           <span className="inline-flex px-3.5 py-1.5 rounded-full font-extrabold text-[10px] uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 tracking-wider mb-6 animate-pulse">
             {currentUser ? `Welcome back, ${currentUser.name}! ✨` : 'Cybernetic Innovation Launch'}
           </span>
-          <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-white mb-5 leading-tight bg-gradient-to-r from-white via-slate-100 to-emerald-300 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white mb-5 leading-tight bg-gradient-to-r from-white via-slate-100 to-emerald-300 bg-clip-text text-transparent">
             {currentUser ? `Hello ${currentUser.name}, Upgrade your Workspace!` : 'High-Performance Tech for the Next Digital Era'}
           </h2>
           <p className="text-slate-400 text-sm leading-relaxed mb-8 font-medium">
@@ -194,6 +194,7 @@ export default function Shop({
         </div>
       </section>
 
+
       {/* Catalog Title */}
       <div id="storefront-catalog" className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 mb-6 scroll-mt-24">
         <div>
@@ -210,7 +211,7 @@ export default function Shop({
 
       {/* Search and Filters Bar */}
       <div className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-3xl p-5 mb-8 flex flex-col lg:flex-row lg:items-center justify-between gap-5 shadow-xl shadow-slate-100/40">
-        <div className="relative flex-1 max-w-lg">
+        <div className="relative flex-1 w-full lg:max-w-lg">
           <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 text-xs">
             🔍
           </span>
@@ -231,13 +232,13 @@ export default function Shop({
           )}
         </div>
 
-        <div className="flex flex-wrap items-center gap-4">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">Category:</span>
+        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-4 w-full lg:w-auto">
+          <div className="flex items-center gap-2 flex-1 sm:flex-initial">
+            <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider min-w-[60px] sm:min-w-0">Category:</span>
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-700 font-bold focus:outline-none focus:border-emerald-500 cursor-pointer hover:bg-slate-100 transition"
+              className="w-full sm:w-auto bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-700 font-bold focus:outline-none focus:border-emerald-500 cursor-pointer hover:bg-slate-100 transition"
             >
               <option value="All">All Categories</option>
               {categories.map(cat => (
@@ -246,12 +247,12 @@ export default function Shop({
             </select>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-extrabold text-slate-400 tracking-wider uppercase">Sort:</span>
+          <div className="flex items-center gap-2 flex-1 sm:flex-initial">
+            <span className="text-[10px] font-extrabold text-slate-400 tracking-wider uppercase min-w-[60px] sm:min-w-0">Sort:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-700 font-bold focus:outline-none focus:border-emerald-500 cursor-pointer hover:bg-slate-100 transition"
+              className="w-full sm:w-auto bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-700 font-bold focus:outline-none focus:border-emerald-500 cursor-pointer hover:bg-slate-100 transition"
             >
               <option value="default">Default Order</option>
               <option value="price-asc">Price: Low to High</option>
@@ -260,6 +261,7 @@ export default function Shop({
           </div>
         </div>
       </div>
+
 
       {/* Dynamic Products Grid */}
       {products.length === 0 ? (
@@ -410,14 +412,14 @@ export default function Shop({
       {/* Product Details & Reviews Modal popup */}
       {selectedProduct && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-2xl p-6 shadow-2xl relative overflow-hidden flex flex-col max-h-[85vh]">
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-2xl p-5 md:p-6 shadow-2xl relative overflow-hidden flex flex-col max-h-[92vh] md:max-h-[85vh]">
             <button 
               onClick={() => {
                 setSelectedProduct(null)
                 setSubmitError('')
                 setReviewComment('')
               }}
-              className="absolute top-4 right-4 text-slate-500 hover:text-slate-300 transition"
+              className="absolute top-4 right-4 text-slate-500 hover:text-slate-300 transition z-30"
               title="Close modal"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -426,9 +428,9 @@ export default function Shop({
             </button>
 
             <div className="overflow-y-auto space-y-6 pr-2">
-              <div className="flex flex-col md:flex-row gap-6">
+              <div className="flex flex-col md:flex-row gap-6 mt-4 md:mt-0">
                 {/* Image panel */}
-                <div className="w-full md:w-1/2 h-52 rounded-2xl bg-gradient-to-tr from-slate-950 via-emerald-950/20 to-slate-950 border border-slate-800 flex items-center justify-center relative overflow-hidden">
+                <div className="w-full md:w-1/2 h-40 md:h-52 rounded-2xl bg-gradient-to-tr from-slate-950 via-emerald-950/20 to-slate-950 border border-slate-800 flex items-center justify-center relative overflow-hidden shrink-0">
                   {selectedProduct.image ? (
                     <img 
                       src={selectedProduct.image.startsWith('http') ? selectedProduct.image : `${apiBase}${selectedProduct.image}`} 
@@ -436,9 +438,10 @@ export default function Shop({
                       className="w-full h-full object-cover" 
                     />
                   ) : (
-                    <ProductWireframeIcon name={selectedProduct.name} className="w-24 h-24 text-emerald-500" />
+                    <ProductWireframeIcon name={selectedProduct.name} className="w-20 h-20 text-emerald-500" />
                   )}
                 </div>
+
 
                 {/* Details */}
                 <div className="w-full md:w-1/2 space-y-4">

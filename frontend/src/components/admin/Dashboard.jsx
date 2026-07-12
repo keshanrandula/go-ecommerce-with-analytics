@@ -465,8 +465,9 @@ export default function Dashboard({
           <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_8px_#f59e0b] animate-pulse"></span>
           Customer Activity Heatmap
         </h2>
-        <p className="text-xs text-slate-550 mb-6 leading-relaxed">
-          Hourly user interaction frequency grouped by day of the week. Darker colors denote higher activity spikes.
+        <p className="text-xs text-slate-550 mb-6 leading-relaxed flex justify-between items-center flex-wrap gap-2">
+          <span>Hourly user interaction frequency grouped by day of the week. Darker colors denote higher activity spikes.</span>
+          <span className="text-[10px] text-amber-500/80 font-bold tracking-wider uppercase block md:hidden select-none animate-pulse">Swipe to Scroll ↔</span>
         </p>
 
         <div className="overflow-x-auto">
@@ -610,7 +611,7 @@ export default function Dashboard({
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Price ($)</label>
                     <input
@@ -636,7 +637,7 @@ export default function Dashboard({
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Badge (Optional)</label>
                     <input
@@ -805,8 +806,9 @@ export default function Dashboard({
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
           Product Catalog Manager
         </h2>
-        <p className="text-xs text-slate-550 mb-6 leading-relaxed">
-          Update prices, edit metadata description fields, or delete items instantly inside MongoDB database.
+        <p className="text-xs text-slate-550 mb-6 leading-relaxed flex justify-between items-center flex-wrap gap-2">
+          <span>Update prices, edit metadata description fields, or delete items instantly inside MongoDB database.</span>
+          <span className="text-[10px] text-emerald-500/80 font-bold tracking-wider uppercase block lg:hidden select-none animate-pulse">Swipe to Scroll ↔</span>
         </p>
 
         {products.length === 0 ? (
@@ -896,8 +898,9 @@ export default function Dashboard({
           <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_8px_#3b82f6]"></span>
           Customer Payments & Order History
         </h2>
-        <p className="text-xs text-slate-550 mb-6 leading-relaxed">
-          Monitor customer transactions, paid amounts, and payment timestamps in real time.
+        <p className="text-xs text-slate-550 mb-6 leading-relaxed flex justify-between items-center flex-wrap gap-2">
+          <span>Monitor customer transactions, paid amounts, and payment timestamps in real time.</span>
+          <span className="text-[10px] text-blue-500/80 font-bold tracking-wider uppercase block lg:hidden select-none animate-pulse">Swipe to Scroll ↔</span>
         </p>
 
         {loadingAdminOrders ? (
@@ -986,8 +989,9 @@ export default function Dashboard({
           <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_8px_#f59e0b]"></span>
           Inventory & Stock Manager
         </h2>
-        <p className="text-xs text-slate-550 mb-6 leading-relaxed">
-          Monitor product stock counts. Out of stock products prevent checkout. Low stock is flagged under 5 items.
+        <p className="text-xs text-slate-550 mb-6 leading-relaxed flex justify-between items-center flex-wrap gap-2">
+          <span>Monitor product stock counts. Out of stock products prevent checkout. Low stock is flagged under 5 items.</span>
+          <span className="text-[10px] text-amber-500/80 font-bold tracking-wider uppercase block lg:hidden select-none animate-pulse">Swipe to Scroll ↔</span>
         </p>
 
         {products.length === 0 ? (
