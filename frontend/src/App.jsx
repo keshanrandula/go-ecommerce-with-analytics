@@ -528,7 +528,7 @@ function App() {
     : 'text-slate-500 hover:text-slate-850'
 
   return (
-    <div className={`min-h-screen selection:bg-emerald-600 selection:text-white font-sans antialiased flex flex-col justify-between transition-colors duration-300 ${
+    <div className={`min-h-screen overflow-x-hidden selection:bg-emerald-600 selection:text-white font-sans antialiased flex flex-col justify-between transition-colors duration-300 ${
       view === 'dashboard' ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-800'
     }`}>
       {/* Background Decorative Gradients based on Theme */}
